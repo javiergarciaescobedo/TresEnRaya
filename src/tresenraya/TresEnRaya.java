@@ -45,10 +45,14 @@ public class TresEnRaya extends Application {
         
         Tablero tablero = new Tablero();
         tablero.inicializar();
-        tablero.mostrar();
+        tablero.mostrar();        
         tablero.ponerFicha(1, 2, 1);
+        if(!tablero.ponerFicha(1, 2, 2)) {
+            System.out.println("No se ha podido poner la ficha");
+        }
         tablero.ponerFicha(0, 1, 2);
         tablero.mostrar();
+        
     }
 
     /**

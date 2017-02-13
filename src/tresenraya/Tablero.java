@@ -29,9 +29,16 @@ public class Tablero {
         System.out.print(tablero[2][1]);
         System.out.println(tablero[2][2]);
     }
-    
-    public void ponerFicha(int x, int y, int jugador) {
-        tablero[x][y] = (byte)jugador;
+
+    public boolean ponerFicha(int x, int y, int jugador) {
+        // Si hay una ficha en esa posición, retornar false
+        if(tablero[x][y] > 0 || x < 0 || x > 2 || y < 0 || y > 2) {
+            return false;
+        } else {
+            // Poner la ficha
+            tablero[x][y] = (byte)jugador;
+            return true;
+        }
     }
     
 }
