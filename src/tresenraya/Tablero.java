@@ -3,6 +3,8 @@ package tresenraya;
 public class Tablero {
     
     private byte[][] arrayTablero = new byte[3][3];
+    public static final byte JUGADOR1 = 1;
+    public static final byte JUGADOR2 = 2;
     
     public void inicializar() {
         // TODO: Hacer esto con bucles

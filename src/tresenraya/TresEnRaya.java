@@ -11,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -41,17 +42,13 @@ public class TresEnRaya extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         
-        Rectangle r = new Rectangle();
-        
         Tablero tablero = new Tablero();
         tablero.inicializar();
-        tablero.ponerFicha(1, 2, 1);
-        if(!tablero.ponerFicha(1, 2, 2)) {
+        tablero.ponerFicha(1, 2, Tablero.JUGADOR1);
+        if(!tablero.ponerFicha(1, 2, Tablero.JUGADOR2)) {
             System.out.println("No se ha podido poner la ficha");
         }
         tablero.ponerFicha(0, 1, 2);
-//        tablero.arrayTablero[1][2] = 2;
-//        tablero.mostrar();
     }
 
     /**
