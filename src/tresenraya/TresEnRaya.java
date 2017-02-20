@@ -8,11 +8,14 @@ package tresenraya;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 /**
@@ -23,32 +26,53 @@ public class TresEnRaya extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
         
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
-        
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(25, 25, 25, 25));
+
+        Scene scene = new Scene(grid, 300, 250);
+                
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.show();
+                
+        Label labelFila = new Label("Fila:");
+        grid.add(labelFila, 0, 0);
+        Label labelColumna = new Label("Columna:");
+        grid.add(labelColumna, 0, 1);
+        Label labelJugador = new Label("Jugador:");
+        grid.add(labelJugador, 0, 2);
+        
+        TextField textFieldFila = new TextField();
+        grid.add(textFieldFila, 1, 0);
+        TextField textFieldColumna = new TextField();
+        grid.add(textFieldColumna, 1, 1);
+        TextField textFieldJugador = new TextField();
+        grid.add(textFieldJugador, 1, 2);
         
         Tablero tablero = new Tablero();
         tablero.inicializar();
-        tablero.ponerFicha(1, 2, Tablero.JUGADOR1);
-        if(!tablero.ponerFicha(1, 2, Tablero.JUGADOR2)) {
-            System.out.println("No se ha podido poner la ficha");
-        }
-        tablero.ponerFicha(0, 1, 2);
+
+        Button btnColocarFicha = new Button("Colocar ficha");
+        grid.add(btnColocarFicha, 0, 3);
+        btnColocarFicha.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                int x = Integer.valueOf(textFieldColumna.getText());
+                int y = Integer.valueOf(textFieldFila.getText());
+                int jug = Integer.valueOf(textFieldJugador.getText());
+                tablero.ponerFicha(x, y, jug);
+            }
+        });
+        
+//        tablero.ponerFicha(1, 2, Tablero.JUGADOR1);
+//        if(!tablero.ponerFicha(1, 2, Tablero.JUGADOR2)) {
+//            System.out.println("No se ha podido poner la ficha");
+//        }
+//        tablero.ponerFicha(0, 1, 2);
     }
 
     /**
