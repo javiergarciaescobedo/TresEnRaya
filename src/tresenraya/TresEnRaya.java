@@ -56,6 +56,9 @@ public class TresEnRaya extends Application {
         Tablero tablero = new Tablero();
         tablero.inicializar();
 
+        Label labelTablero = new Label("");
+        grid.add(labelTablero, 1, 3);
+
         Button btnColocarFicha = new Button("Colocar ficha");
         grid.add(btnColocarFicha, 0, 3);
         btnColocarFicha.setOnAction(new EventHandler<ActionEvent>() {
@@ -65,8 +68,10 @@ public class TresEnRaya extends Application {
                 int y = Integer.valueOf(textFieldFila.getText());
                 int jug = Integer.valueOf(textFieldJugador.getText());
                 tablero.ponerFicha(x, y, jug);
+                labelTablero.setText(tablero.toString());
             }
         });
+        
         
 //        tablero.ponerFicha(1, 2, Tablero.JUGADOR1);
 //        if(!tablero.ponerFicha(1, 2, Tablero.JUGADOR2)) {

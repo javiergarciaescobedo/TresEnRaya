@@ -44,4 +44,23 @@ public class Tablero {
         }
     }
     
+    @Override
+    public String toString() {
+        String strTablero = "";
+        // TODO: Hacer esto con bucles
+        strTablero += arrayTablero[0][0];
+        strTablero += arrayTablero[0][1];
+        strTablero += arrayTablero[0][2];
+        strTablero += "\n";
+        strTablero += arrayTablero[1][0];
+        strTablero += arrayTablero[1][1];
+        strTablero += arrayTablero[1][2];
+        strTablero += "\n";
+        strTablero += arrayTablero[2][0];
+        strTablero += arrayTablero[2][1];
+        strTablero += arrayTablero[2][2];
+        return strTablero;
+    }
+    
+    
 }
