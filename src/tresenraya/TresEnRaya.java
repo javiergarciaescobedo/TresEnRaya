@@ -27,57 +27,79 @@ public class TresEnRaya extends Application {
     @Override
     public void start(Stage primaryStage) {
         
+        Tablero tablero = new Tablero();
+        tablero.inicializar();
+
+        // Elementos principales de la ventana        
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
-
-        Scene scene = new Scene(grid, 300, 250);
-                
-        primaryStage.setTitle("Hello World!");
+        Scene scene = new Scene(grid, 300, 250);                
+        primaryStage.setTitle("3 en Raya");
         primaryStage.setScene(scene);
         primaryStage.show();
                 
+        // Campos de texto del formulario
         Label labelFila = new Label("Fila:");
         grid.add(labelFila, 0, 0);
-        Label labelColumna = new Label("Columna:");
-        grid.add(labelColumna, 0, 1);
-        Label labelJugador = new Label("Jugador:");
-        grid.add(labelJugador, 0, 2);
-        
         TextField textFieldFila = new TextField();
         grid.add(textFieldFila, 1, 0);
+
+        Label labelColumna = new Label("Columna:");
+        grid.add(labelColumna, 0, 1);
         TextField textFieldColumna = new TextField();
         grid.add(textFieldColumna, 1, 1);
+
+        Label labelJugador = new Label("Jugador:");
+        grid.add(labelJugador, 0, 2);
         TextField textFieldJugador = new TextField();
         grid.add(textFieldJugador, 1, 2);
-        
-        Tablero tablero = new Tablero();
-        tablero.inicializar();
-
+                
+        // Tablero en pantalla
         Label labelTablero = new Label("");
+        labelTablero.setText(tablero.toString());
+        labelTablero.setMinHeight(50);
         grid.add(labelTablero, 1, 3);
 
+        // Contadores de fichas colocadas
+        grid.add(new Label("Fichas Jug.1:"), 0, 4);
+        grid.add(new Label("Fichas Jug.2:"), 0, 5);
+        Label labelNumFichasJ1 = new Label("0");
+        grid.add(labelNumFichasJ1, 1, 4);
+        Label labelNumFichasJ2 = new Label("0");
+        grid.add(labelNumFichasJ2, 1, 5);
+
+        // Botón "Colocar Ficha"
         Button btnColocarFicha = new Button("Colocar ficha");
         grid.add(btnColocarFicha, 0, 3);
         btnColocarFicha.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
+                // Obtener datos introducidos por el usuario
                 int x = Integer.valueOf(textFieldColumna.getText());
                 int y = Integer.valueOf(textFieldFila.getText());
                 int jug = Integer.valueOf(textFieldJugador.getText());
+                // Colocar la ficha indicada por el usuario
                 tablero.ponerFicha(x, y, jug);
+                // Mostrar el tablero como texto
                 labelTablero.setText(tablero.toString());
+                // Mostrar el número de fichas colocadas por cada jugador
+                switch(jug){
+                    case Tablero.JUGADOR1:
+                        labelNumFichasJ1.setText(String.valueOf(
+                                tablero.getNumFichas(Tablero.JUGADOR1))
+                        );
+                        break;
+                    case Tablero.JUGADOR2:
+                        labelNumFichasJ2.setText(String.valueOf(
+                                tablero.getNumFichas(Tablero.JUGADOR2))
+                        );
+                        break;
+                }
             }
-        });
-        
-        
-//        tablero.ponerFicha(1, 2, Tablero.JUGADOR1);
-//        if(!tablero.ponerFicha(1, 2, Tablero.JUGADOR2)) {
-//            System.out.println("No se ha podido poner la ficha");
-//        }
-//        tablero.ponerFicha(0, 1, 2);
+        });        
     }
 
     /**

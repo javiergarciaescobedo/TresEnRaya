@@ -2,9 +2,13 @@ package tresenraya;
 
 public class Tablero {
     
-    private byte[][] arrayTablero = new byte[3][3];
     public static final byte JUGADOR1 = 1;
     public static final byte JUGADOR2 = 2;
+
+    private byte[][] arrayTablero = new byte[3][3];
+    // Contadores para almacenar el número de fichas colocadas por
+    //  cada jugador. Se deja la celda 0 sin uso.
+    private int[] numFichasJug = new int[3];
     
     public void inicializar() {
         // TODO: Hacer esto con bucles
@@ -17,6 +21,11 @@ public class Tablero {
         arrayTablero[2][0] = 0;
         arrayTablero[2][1] = 0;
         arrayTablero[2][2] = 0;
+        
+        // Número de fichas iniciales de cada jugador
+        // No se utiliza la posición 0 del array por claridad de código
+        numFichasJug[JUGADOR1] = 0;
+        numFichasJug[JUGADOR2] = 0;
     }
     
     private void mostrar() {
@@ -39,6 +48,7 @@ public class Tablero {
         } else {
             // Poner la ficha
             arrayTablero[x][y] = (byte)jugador;
+            numFichasJug[jugador]++;
             this.mostrar();
             return true;
         }
@@ -62,5 +72,8 @@ public class Tablero {
         return strTablero;
     }
     
+    public int getNumFichas(int jugador) {
+        return numFichasJug[jugador];
+    }
     
 }
