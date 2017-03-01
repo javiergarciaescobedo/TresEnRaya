@@ -54,6 +54,10 @@ public class Tablero {
         }
     }
     
+    public boolean moverFicha(int x1, int y1, int x2, int y2, int jugador) {
+        return true;
+    }
+    
     @Override
     public String toString() {
         String strTablero = "";

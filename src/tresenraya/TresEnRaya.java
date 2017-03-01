@@ -36,7 +36,7 @@ public class TresEnRaya extends Application {
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
-        Scene scene = new Scene(grid, 300, 250);                
+        Scene scene = new Scene(grid, 500, 250);                
         primaryStage.setTitle("3 en Raya");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -45,6 +45,10 @@ public class TresEnRaya extends Application {
         Label labelFila = new Label("Fila:");
         grid.add(labelFila, 0, 0);
         TextField textFieldFila = new TextField();
+        /* Para asignar tamaño fijo
+        textFieldFila.setPrefWidth(50);
+        textFieldFila.setMinWidth(50);
+        textFieldFila.setMaxWidth(50);*/
         grid.add(textFieldFila, 1, 0);
 
         Label labelColumna = new Label("Columna:");
@@ -52,11 +56,35 @@ public class TresEnRaya extends Application {
         TextField textFieldColumna = new TextField();
         grid.add(textFieldColumna, 1, 1);
 
+        Label labelFila2 = new Label("A fila:");
+        grid.add(labelFila2, 2, 0);
+        TextField textFieldFila2 = new TextField();
+        grid.add(textFieldFila2, 3, 0);
+
+        Label labelColumna2 = new Label("A columna:");
+        grid.add(labelColumna2, 2, 1);
+        TextField textFieldColumna2 = new TextField();
+        grid.add(textFieldColumna2, 3, 1);
+
         Label labelJugador = new Label("Jugador:");
         grid.add(labelJugador, 0, 2);
         TextField textFieldJugador = new TextField();
         grid.add(textFieldJugador, 1, 2);
                 
+        Button btnMoverFicha = new Button("Mover ficha");
+        grid.add(btnMoverFicha, 3, 2);
+        btnMoverFicha.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                int x1 = Integer.valueOf(textFieldColumna.getText());
+                int y1 = Integer.valueOf(textFieldFila.getText());
+                int x2 = Integer.valueOf(textFieldColumna2.getText());
+                int y2 = Integer.valueOf(textFieldFila2.getText());
+                int jug = Integer.valueOf(textFieldJugador.getText());
+                tablero.moverFicha(x1, y1, x2, y2, jug);
+            }
+        });
+
         // Tablero en pantalla
         Label labelTablero = new Label("");
         labelTablero.setText(tablero.toString());
