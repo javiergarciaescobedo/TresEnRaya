@@ -71,6 +71,12 @@ public class TresEnRaya extends Application {
         TextField textFieldJugador = new TextField();
         grid.add(textFieldJugador, 1, 2);
                 
+        // Tablero en pantalla
+        Label labelTablero = new Label("");
+        labelTablero.setText(tablero.toString());
+        labelTablero.setMinHeight(50);
+        grid.add(labelTablero, 1, 3);
+
         Button btnMoverFicha = new Button("Mover ficha");
         grid.add(btnMoverFicha, 3, 2);
         btnMoverFicha.setOnAction(new EventHandler<ActionEvent>() {
@@ -82,14 +88,10 @@ public class TresEnRaya extends Application {
                 int y2 = Integer.valueOf(textFieldFila2.getText());
                 int jug = Integer.valueOf(textFieldJugador.getText());
                 tablero.moverFicha(x1, y1, x2, y2, jug);
+                // Mostrar el tablero como texto
+                labelTablero.setText(tablero.toString());
             }
         });
-
-        // Tablero en pantalla
-        Label labelTablero = new Label("");
-        labelTablero.setText(tablero.toString());
-        labelTablero.setMinHeight(50);
-        grid.add(labelTablero, 1, 3);
 
         // Contadores de fichas colocadas
         grid.add(new Label("Fichas Jug.1:"), 0, 4);

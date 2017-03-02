@@ -54,7 +54,10 @@ public class Tablero {
         }
     }
     
-    public boolean moverFicha(int x1, int y1, int x2, int y2, int jugador) {
+    public boolean moverFicha(int xOrig, int yOrig, int xDest, int yDest, int jugador) {
+        arrayTablero[xDest][yDest] = arrayTablero[xOrig][yOrig];
+        // La posición de origen se deja sin ficha
+        arrayTablero[xOrig][yOrig] = 0;
         return true;
     }
     
