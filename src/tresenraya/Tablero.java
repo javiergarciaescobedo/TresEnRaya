@@ -42,26 +42,38 @@ public class Tablero {
     }
 
     public boolean ponerFicha(int x, int y, int jugador) {
-        // Si hay una ficha en esa posición, retornar false
-        if(arrayTablero[x][y] > 0 || x < 0 || x > 2 || y < 0 || y > 2) {
+        try {
+            // Si hay una ficha en esa posición, retornar false
+            if(arrayTablero[x][y] > 0) {
+                return false;
+            } else {
+                // Poner la ficha
+                arrayTablero[x][y] = (byte)jugador;
+                numFichasJug[jugador]++;
+                this.mostrar();
+                return true;
+            }
+        // Controlar que las posiciones indicadas del array son correctas
+        } catch(ArrayIndexOutOfBoundsException ex) {
+            ex.printStackTrace();
             return false;
-        } else {
-            // Poner la ficha
-            arrayTablero[x][y] = (byte)jugador;
-            numFichasJug[jugador]++;
-            this.mostrar();
-            return true;
         }
     }
     
     public boolean moverFicha(int xOrig, int yOrig, int xDest, int yDest, int jugador) {
-        // Si hay una ficha en la posición de destino, no permitirlo
-        if(arrayTablero[xDest][yDest] == 0 && arrayTablero[xOrig][yOrig] == jugador) {
-            arrayTablero[xDest][yDest] = arrayTablero[xOrig][yOrig];
-            // La posición de origen se deja sin ficha
-            arrayTablero[xOrig][yOrig] = 0;
-            return true;
-        } else {  // Ya hay una ficha en esa posición
+        try {
+            // Si hay una ficha en la posición de destino, no permitirlo
+            if(arrayTablero[xDest][yDest] == 0 && arrayTablero[xOrig][yOrig] == jugador) {
+                arrayTablero[xDest][yDest] = arrayTablero[xOrig][yOrig];
+                // La posición de origen se deja sin ficha
+                arrayTablero[xOrig][yOrig] = 0;
+                return true;
+            } else {  // Ya hay una ficha en esa posición
+                return false;
+            }
+        // Controlar que las posiciones indicadas del array son correctas
+        } catch(ArrayIndexOutOfBoundsException ex) {
+            ex.printStackTrace();
             return false;
         }
     }

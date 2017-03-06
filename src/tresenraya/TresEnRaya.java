@@ -107,29 +107,35 @@ public class TresEnRaya extends Application {
         btnColocarFicha.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                // Obtener datos introducidos por el usuario
-                int x = Integer.valueOf(textFieldColumna.getText());
-                int y = Integer.valueOf(textFieldFila.getText());
-                int jug = Integer.valueOf(textFieldJugador.getText());
-                // Colocar la ficha indicada por el usuario
-                tablero.ponerFicha(x, y, jug);
-                // Mostrar el tablero como texto
-                labelTablero.setText(tablero.toString());
-                // Mostrar el número de fichas colocadas por cada jugador
-                switch(jug){
-                    case Tablero.JUGADOR1:
-                        labelNumFichasJ1.setText(String.valueOf(
-                                tablero.getNumFichas(Tablero.JUGADOR1))
-                        );
-                        break;
-                    case Tablero.JUGADOR2:
-                        labelNumFichasJ2.setText(String.valueOf(
-                                tablero.getNumFichas(Tablero.JUGADOR2))
-                        );
-                        break;
+                try {
+                    // Obtener datos introducidos por el usuario
+                    int x = Integer.valueOf(textFieldColumna.getText());
+                    int y = Integer.valueOf(textFieldFila.getText());
+                    int jug = Integer.valueOf(textFieldJugador.getText());
+                    // Colocar la ficha indicada por el usuario
+                    tablero.ponerFicha(x, y, jug);
+                    // Mostrar el tablero como texto
+                    labelTablero.setText(tablero.toString());
+                    // Mostrar el número de fichas colocadas por cada jugador
+                    switch(jug){
+                        case Tablero.JUGADOR1:
+                            labelNumFichasJ1.setText(String.valueOf(
+                                    tablero.getNumFichas(Tablero.JUGADOR1))
+                            );
+                            break;
+                        case Tablero.JUGADOR2:
+                            labelNumFichasJ2.setText(String.valueOf(
+                                    tablero.getNumFichas(Tablero.JUGADOR2))
+                            );
+                            break;
+                    }
+                // Controlar que los valores indicados son numéricos
+                } catch(NumberFormatException ex) {
+                    labelTablero.setText("Valor incorrecto");
+                    ex.printStackTrace();
                 }
             }
-        });        
+        });              
     }
 
     /**
