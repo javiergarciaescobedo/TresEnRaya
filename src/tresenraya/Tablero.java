@@ -100,4 +100,32 @@ public class Tablero {
         return numFichasJug[jugador];
     }
     
+    public byte comprobarResultado() {
+        // Comprobar líneas horizontales
+        for(int y=0; y<3; y++) {
+            if(arrayTablero[0][y] == arrayTablero[1][y] && 
+                    arrayTablero[0][y] == arrayTablero[2][y]) {
+                return arrayTablero[0][y];
+            }
+        }
+        // Comprobar líneas verticales
+        for(int x=0; x<3; x++) {
+            if(arrayTablero[x][0] == arrayTablero[x][1] && 
+                    arrayTablero[x][0] == arrayTablero[x][2]) {
+                return arrayTablero[x][0];
+            }
+        }
+        // Comprobar líneas diagonales
+        if(arrayTablero[0][0] == arrayTablero[1][1] && 
+                arrayTablero[0][0] == arrayTablero[2][2]) {
+            return arrayTablero[0][0];
+        }
+        if(arrayTablero[2][0] == arrayTablero[1][1] && 
+                arrayTablero[2][0] == arrayTablero[0][2]) {
+            return arrayTablero[2][0];
+        }
+        // No hay ganador
+        return 0;        
+    }
+    
 }
