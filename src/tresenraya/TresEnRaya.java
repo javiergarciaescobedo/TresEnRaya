@@ -42,29 +42,29 @@ public class TresEnRaya extends Application {
         primaryStage.show();
                 
         // Campos de texto del formulario
-        Label labelFila = new Label("Fila:");
-        grid.add(labelFila, 0, 0);
-        TextField textFieldFila = new TextField();
+        Label labelX = new Label("X:");
+        grid.add(labelX, 0, 0);
+        TextField textFieldX = new TextField();
         /* Para asignar tamaño fijo
         textFieldFila.setPrefWidth(50);
         textFieldFila.setMinWidth(50);
         textFieldFila.setMaxWidth(50);*/
-        grid.add(textFieldFila, 1, 0);
+        grid.add(textFieldX, 1, 0);
 
-        Label labelColumna = new Label("Columna:");
-        grid.add(labelColumna, 0, 1);
-        TextField textFieldColumna = new TextField();
-        grid.add(textFieldColumna, 1, 1);
+        Label labelY = new Label("Y:");
+        grid.add(labelY, 0, 1);
+        TextField textFieldY = new TextField();
+        grid.add(textFieldY, 1, 1);
 
-        Label labelFila2 = new Label("A fila:");
-        grid.add(labelFila2, 2, 0);
-        TextField textFieldFila2 = new TextField();
-        grid.add(textFieldFila2, 3, 0);
+        Label labelX2 = new Label("A X:");
+        grid.add(labelX2, 2, 0);
+        TextField textFieldX2 = new TextField();
+        grid.add(textFieldX2, 3, 0);
 
-        Label labelColumna2 = new Label("A columna:");
-        grid.add(labelColumna2, 2, 1);
-        TextField textFieldColumna2 = new TextField();
-        grid.add(textFieldColumna2, 3, 1);
+        Label labelY2 = new Label("A Y:");
+        grid.add(labelY2, 2, 1);
+        TextField textFieldY2 = new TextField();
+        grid.add(textFieldY2, 3, 1);
 
         Label labelJugador = new Label("Jugador:");
         grid.add(labelJugador, 0, 2);
@@ -87,10 +87,10 @@ public class TresEnRaya extends Application {
         btnMoverFicha.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                int x1 = Integer.valueOf(textFieldColumna.getText());
-                int y1 = Integer.valueOf(textFieldFila.getText());
-                int x2 = Integer.valueOf(textFieldColumna2.getText());
-                int y2 = Integer.valueOf(textFieldFila2.getText());
+                int x1 = Integer.valueOf(textFieldY.getText());
+                int y1 = Integer.valueOf(textFieldX.getText());
+                int x2 = Integer.valueOf(textFieldY2.getText());
+                int y2 = Integer.valueOf(textFieldX2.getText());
                 int jug = Integer.valueOf(textFieldJugador.getText());
                 tablero.moverFicha(x1, y1, x2, y2, jug);
                 // Mostrar el tablero como texto
@@ -114,8 +114,8 @@ public class TresEnRaya extends Application {
             public void handle(ActionEvent e) {
                 try {
                     // Obtener datos introducidos por el usuario
-                    int x = Integer.valueOf(textFieldColumna.getText());
-                    int y = Integer.valueOf(textFieldFila.getText());
+                    int x = Integer.valueOf(textFieldY.getText());
+                    int y = Integer.valueOf(textFieldX.getText());
                     int jug = Integer.valueOf(textFieldJugador.getText());
                     // Colocar la ficha indicada por el usuario
                     tablero.ponerFicha(x, y, jug);
