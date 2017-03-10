@@ -77,6 +77,11 @@ public class TresEnRaya extends Application {
         labelTablero.setMinHeight(50);
         grid.add(labelTablero, 1, 3);
 
+        // Tablero en pantalla
+        Label labelInfo = new Label("");
+        labelInfo.setMinHeight(50);
+        grid.add(labelInfo, 3, 3);
+
         Button btnMoverFicha = new Button("Mover ficha");
         grid.add(btnMoverFicha, 3, 2);
         btnMoverFicha.setOnAction(new EventHandler<ActionEvent>() {
@@ -128,6 +133,10 @@ public class TresEnRaya extends Application {
                                     tablero.getNumFichas(Tablero.JUGADOR2))
                             );
                             break;
+                    }
+                    byte ganador = tablero.comprobarResultado();
+                    if(ganador != 0) {
+                        labelInfo.setText("Ha ganado el jugador: " + ganador);
                     }
                 // Controlar que los valores indicados son numéricos
                 } catch(NumberFormatException ex) {
