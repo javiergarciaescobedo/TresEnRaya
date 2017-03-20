@@ -22,7 +22,7 @@ import javafx.stage.Stage;
  *
  * @author Javier
  */
-public class TresEnRaya extends Application {
+public class TresEnRaya_Texto extends Application {
 
     @Override
     public void start(Stage primaryStage) {
@@ -72,19 +72,15 @@ public class TresEnRaya extends Application {
         grid.add(textFieldJugador, 1, 2);
 
         // Tablero en pantalla
-//        Label labelTablero = new Label("");
-//        labelTablero.setText(tablero.toString());
-//        labelTablero.setMinHeight(50);
-//        grid.add(labelTablero, 1, 3);
-        TableroView tableroView = new TableroView();  
-        tableroView.crear();
-        grid.add(tableroView.getGridTableroFichas(), 1, 3);
+        Label labelTablero = new Label("");
+        labelTablero.setText(tablero.toString());
+        labelTablero.setMinHeight(50);
+        grid.add(labelTablero, 1, 3);
 
+        // Tablero en pantalla
         Label labelInfo = new Label("");
         labelInfo.setMinHeight(50);
         grid.add(labelInfo, 3, 3);
-        
-
 
         Button btnMoverFicha = new Button("Mover ficha");
         grid.add(btnMoverFicha, 3, 2);
@@ -98,7 +94,7 @@ public class TresEnRaya extends Application {
                 int jug = Integer.valueOf(textFieldJugador.getText());
                 tablero.moverFicha(x1, y1, x2, y2, jug);
                 // Mostrar el tablero como texto
-//                labelTablero.setText(tablero.toString());
+                labelTablero.setText(tablero.toString());
             }
         });
 
@@ -124,7 +120,7 @@ public class TresEnRaya extends Application {
                     // Colocar la ficha indicada por el usuario
                     tablero.ponerFicha(x, y, jug);
                     // Mostrar el tablero como texto
-//                    labelTablero.setText(tablero.toString());
+                    labelTablero.setText(tablero.toString());
                     // Mostrar el número de fichas colocadas por cada jugador
                     switch (jug) {
                         case Tablero.JUGADOR1:
@@ -144,7 +140,7 @@ public class TresEnRaya extends Application {
                     }
                     // Controlar que los valores indicados son numéricos
                 } catch (NumberFormatException ex) {
-//                    labelTablero.setText("Valor incorrecto");
+                    labelTablero.setText("Valor incorrecto");
                     ex.printStackTrace();
                 }
             }
