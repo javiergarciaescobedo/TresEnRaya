@@ -77,7 +77,7 @@ public class TresEnRaya extends Application {
 //        labelTablero.setMinHeight(50);
 //        grid.add(labelTablero, 1, 3);
         TableroView tableroView = new TableroView();  
-        tableroView.crear();
+//        tableroView.crear();
         grid.add(tableroView.getGridTableroFichas(), 1, 3);
 
         Label labelInfo = new Label("");

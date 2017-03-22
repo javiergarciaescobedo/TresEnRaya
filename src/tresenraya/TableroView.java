@@ -8,7 +8,7 @@ public class TableroView {
 
     GridPane gridTableroFichas;
     
-    public void crear() {
+    public TableroView() {
         // load the image
         Image image = new Image("tresenraya/pokerchip1.png");
          
@@ -19,7 +19,7 @@ public class TableroView {
                 ivFichaRoja.setImage(image);
                 gridTableroFichas.add(ivFichaRoja, x, y);
             }
-        }
+        }        
     }
 
     public GridPane getGridTableroFichas() {
